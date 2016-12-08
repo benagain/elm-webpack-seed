@@ -7,6 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 var Webpack = require('webpack');
 var WebpackMerge = require('webpack-merge');
+var path = require('path')
 
 
 var npm_target = process.env.npm_lifecycle_event;
@@ -76,7 +77,7 @@ if (environment === 'development') {
                 },
 
                 {
-                    test: /src\/Stylesheets.elm$/,
+                    test: path.resolve(__dirname, "src/Stylesheets.elm"),
                     loaders: [
                         'style-loader',
                         'css-loader',
@@ -90,7 +91,7 @@ if (environment === 'development') {
                     exclude: [
                         /elm-stuff/,
                         /node_modules/,
-                        /src\/Stylesheets.elm$/
+                        path.resolve(__dirname, "src/Stylesheets.elm"),
                     ],
                     loaders: [
                         'elm-hot-loader',
@@ -191,7 +192,7 @@ if (environment === 'development') {
                     exclude: [
                         /elm-stuff/,
                         /node_modules/,
-                        /src\/Stylesheets.elm$/
+                        path.resolve(__dirname, "src/Stylesheets.elm")
                     ],
                     loader: 'elm-webpack-loader'
                 }
